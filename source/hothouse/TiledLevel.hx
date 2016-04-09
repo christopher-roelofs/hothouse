@@ -37,7 +37,6 @@ class TiledLevel extends TiledMap
 	public function new(tiledLevel:Dynamic, state:PlayState)
 	{
 		super(tiledLevel);
-		
 		imagesLayer = new FlxGroup();
 		foregroundTiles = new FlxGroup();
 		objectsLayer = new FlxGroup();
@@ -171,6 +170,11 @@ class TiledLevel extends TiledMap
 				player = new Player(x,y);
 				FlxG.camera.follow(player);
 				group.add(player);
+
+			case "pot":
+				var tileset = g.map.getGidOwner(o.gid);
+				var pot = new FlxSprite(x, y, c_PATH_LEVEL_TILESHEETS + tileset.imageSource);
+				state.pots.add(pot);
 		}
 	}
 
