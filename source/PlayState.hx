@@ -11,12 +11,6 @@ class PlayState extends FlxState
 {
 	public var level:TiledLevel;
 	
-	public var score:FlxText;
-	public var status:FlxText;
-	
-	
-	private static var youDied:Bool = false;
-	
 	override public function create():Void 
 	{
 		FlxG.mouse.visible = false;
