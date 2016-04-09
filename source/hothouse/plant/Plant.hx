@@ -9,17 +9,37 @@ class Plant {
 
 	private var seed:Seed;
 
-	private var idealTemperature:Int;
+	private var temperature:TemparatureFactor;
 
-	private var idealSoilMoisture:Int;
+	private var ph:SoilPhFactor;
 
-	
-	private var idealSoilPh:Float;
+	private var sunlight:SunlightFactor;
+
+	private var water:WaterFactor;
 
 
 	public function new(seed:Seed) 
 	{
 		this.seed = seed;
+	}
+
+	public function addFertilizer(ph:Float) {
+
+	}
+
+	public function addWater(amount:Float) {
+		this.water.add(amount);
+	}
+
+	public function setTemperature(temperature:Float) {
+		this.temperature.setCurrent(temperature);
+	}
+
+	public function setSunlight(sunlight:Float) {
+		this.sunlight.setCurrent(sunlight);
+	}
+
+	public function update() {
 
 	}
 
