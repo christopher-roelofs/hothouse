@@ -50,21 +50,11 @@ class Player extends FlxSprite
 			if (_up)
 			{
 				mA = -90;
-				if (_left)
-					mA -= 45;
-				else if (_right)
-					mA += 45;
-					
 				facing = FlxObject.UP;
 			}
 			else if (_down)
 			{
 				mA = 90;
-				if (_left)
-					mA += 45;
-				else if (_right)
-					mA -= 45;
-				
 				facing = FlxObject.DOWN;
 			}
 			else if (_left)
