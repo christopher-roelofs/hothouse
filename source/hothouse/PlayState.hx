@@ -2,6 +2,7 @@
 package hothouse;
 
 import hothouse.TiledLevel;
+import hothouse.PlantState;
 
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -9,6 +10,7 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
+import flixel.util.FlxColor;
 
 
 class PlayState extends FlxState
@@ -61,7 +63,9 @@ class PlayState extends FlxState
 	public function getPot(Pot:FlxObject, Player:FlxObject):Void
 	{
 		if (FlxG.keys.anyJustReleased([P]))
-			trace("transition to plant screen");
+			FlxG.camera.fade(FlxColor.BLACK, .33, false, function() {
+			FlxG.switchState(new hothouse.PlantState());
+		});
 		if (FlxG.keys.anyJustReleased([M]))
 			trace("change character sprite to added plant");
 	}
