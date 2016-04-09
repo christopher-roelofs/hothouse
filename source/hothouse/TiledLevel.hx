@@ -14,6 +14,8 @@ import flixel.addons.editors.tiled.TiledTileSet;
 import flixel.group.FlxGroup;
 import flixel.tile.FlxTilemap;
 import haxe.io.Path;
+import hothouse.plant.Seed;
+
 
 /**
  * @author Samuel Batista
@@ -38,10 +40,14 @@ class TiledLevel extends TiledMap
 	{
 		super(tiledLevel);
 		
+		trace("got pot!");
+
 		imagesLayer = new FlxGroup();
 		foregroundTiles = new FlxGroup();
 		objectsLayer = new FlxGroup();
 		backgroundLayer = new FlxGroup();
+
+		var seed:Seed = new Seed();
 		
 		FlxG.camera.setScrollBoundsRect(0, 0, fullWidth, fullHeight, true);
 		
