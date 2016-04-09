@@ -205,7 +205,6 @@ class TiledLevel extends TiledMap
 			if (FlxG.overlap(map, obj, notifyCallback, processCallback != null ? processCallback : FlxObject.separate))
 			{
 				return true;
-				trace("test");
 			}
 		}
 		return false;
