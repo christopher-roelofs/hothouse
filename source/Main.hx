@@ -1,4 +1,4 @@
-package;
+package hothouse;
 
 import flixel.FlxGame;
 import openfl.display.Sprite;

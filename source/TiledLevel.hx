@@ -1,4 +1,4 @@
-package;
+package hothouse;
 
 import flixel.FlxG;
 import flixel.FlxObject;
