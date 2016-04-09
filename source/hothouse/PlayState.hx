@@ -66,7 +66,8 @@ class PlayState extends FlxState
 			FlxG.camera.fade(FlxColor.BLACK, .33, false, function() {
 			FlxG.switchState(new hothouse.PlantState());
 		});
-		if (FlxG.keys.anyJustReleased([M]))
-			trace("change character sprite to added plant");
+		if (FlxG.keys.anyPressed([M]))
+			//trace("change character sprite to added plant");
+			Pot.setPosition(Player.x,Player.y);
 	}
 }
