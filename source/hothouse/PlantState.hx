@@ -1,4 +1,7 @@
-package ;
+package hothouse;
+
+import hothouse.TiledLevel;
+
 
 import flixel.FlxG;
 import flixel.FlxSprite;
@@ -10,9 +13,11 @@ import flixel.util.FlxDestroyUtil;
 import flixel.util.FlxSave;
 using flixel.util.FlxSpriteUtil;
 
-class GameOverState extends FlxState
+class PlantState extends FlxState
 {
-	
+	private var _txtTitle:FlxText;	
+	private var _btnMainMenu:FlxButton;
+
 	
 	override public function create():Void 
 	{
@@ -23,16 +28,12 @@ class GameOverState extends FlxState
 		
 		// create and add each of our items
 		
-		_txtTitle = new FlxText(0, 20, 0, _win ? "You Have Survived!" : "You Have Succumbed...", 22);
+		_txtTitle = new FlxText(0, 20, 0, "Plant Scene", 22);
 		_txtTitle.alignment = "center";
-		_txtTitle.screenCenter(true, false);
 		add(_txtTitle);
 		
-		_btnMainMenu = new FlxButton(0, FlxG.height - 32, "Return...", goMainMenu);
-		_btnMainMenu.screenCenter(true, false);
+		_btnMainMenu = new FlxButton(0, FlxG.height - 32, "Back", goMainMenu);
 		add(_btnMainMenu);
-		
-		FlxG.camera.fade(FlxColor.BLACK, .33, true);
 		
 		super.create();
 	}
@@ -51,7 +52,6 @@ class GameOverState extends FlxState
 		
 		// clean up all our objects!
 		_txtTitle = FlxDestroyUtil.destroy(_txtTitle);
-		_txtMessage = FlxDestroyUtil.destroy(_txtMessage);
 		_btnMainMenu = FlxDestroyUtil.destroy(_btnMainMenu);
 	}
 }

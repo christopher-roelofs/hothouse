@@ -1,52 +1,8 @@
-<<<<<<< HEAD:source/PlayState.hx
-package hothouse;
-
-import flixel.FlxG;
-import flixel.FlxObject;
-import flixel.FlxSprite;
-import flixel.FlxState;
-import flixel.group.FlxGroup;
-import flixel.text.FlxText;
-
-class PlayState extends FlxState
-{
-	public var level:TiledLevel;
 	
-	override public function create():Void 
-	{
-		FlxG.mouse.visible = false;
-		
-		bgColor = 0xffaaaaaa;
-		
-		// Load the level's tilemap
-		level = new TiledLevel("assets/tiled/level.tmx", this);
-		
-		// Add backgrounds
-		add(level.backgroundLayer);
-
-		// Add static images
-		add(level.imagesLayer);
-		
-		// Load player objects
-		add(level.objectsLayer);
-		
-		// Add foreground tiles after adding level objects, so these tiles render on top of player
-		add(level.foregroundTiles);
-		
-	}
-	
-	override public function update(elapsed:Float):Void 
-	{
-		super.update(elapsed);
-		// Collide with foreground tile layer
-		level.collideWithLevel(level.player);
-		
-	}
-	
-=======
 package hothouse;
 
 import hothouse.TiledLevel;
+import hothouse.PlantState;
 
 import flixel.FlxG;
 import flixel.FlxObject;
@@ -54,6 +10,8 @@ import flixel.FlxSprite;
 import flixel.FlxState;
 import flixel.group.FlxGroup;
 import flixel.text.FlxText;
+import flixel.util.FlxColor;
+
 
 class PlayState extends FlxState
 {
@@ -61,6 +19,7 @@ class PlayState extends FlxState
 	
 	public var score:FlxText;
 	public var status:FlxText;
+	public var pots:FlxGroup;
 	
 	
 	private static var youDied:Bool = false;
@@ -70,9 +29,11 @@ class PlayState extends FlxState
 		FlxG.mouse.visible = false;
 		
 		bgColor = 0xffaaaaaa;
-		
+		pots = new FlxGroup();
 		// Load the level's tilemap
 		level = new TiledLevel("assets/tiled/level.tmx", this);
+
+		add(pots);
 		
 		// Add backgrounds
 		add(level.backgroundLayer);
@@ -91,10 +52,21 @@ class PlayState extends FlxState
 	override public function update(elapsed:Float):Void 
 	{
 		super.update(elapsed);
+
+		FlxG.overlap(pots, level.player, getPot);
+
 		// Collide with foreground tile layer
 		level.collideWithLevel(level.player);
 		
+	}	
+
+	public function getPot(Pot:FlxObject, Player:FlxObject):Void
+	{
+		if (FlxG.keys.anyJustReleased([P]))
+			FlxG.camera.fade(FlxColor.BLACK, .33, false, function() {
+			FlxG.switchState(new hothouse.PlantState());
+		});
+		if (FlxG.keys.anyJustReleased([M]))
+			trace("change character sprite to added plant");
 	}
-	
->>>>>>> e0e38f59c7211b022f65550e310e527c34bfd214:source/hothouse/PlayState.hx
 }
