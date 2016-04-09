@@ -1,5 +1,5 @@
-package hothouse;
 
+import hothouse.PlayState;
 import flixel.FlxGame;
 import openfl.display.Sprite;
 
